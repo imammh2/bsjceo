@@ -39,6 +39,15 @@
                     },
                     fontFamily: {
                         sans: ['Inter', 'sans-serif'],
+                    },
+                    animation: {
+                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        pulse: {
+                            '0%, 100%': { opacity: '1' },
+                            '50%': { opacity: '.5' },
+                        }
                     }
                 }
             }
@@ -75,12 +84,21 @@
             100% { transform: rotate(360deg); }
         }
         
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
         .animate-pulse {
             animation: pulse 2s ease-in-out infinite;
         }
         
         .animate-spin {
             animation: spin 0.8s linear infinite;
+        }
+        
+        .rotate-180 {
+            transform: rotate(180deg);
         }
     </style>
 </head>
@@ -114,10 +132,15 @@
                     </div>
                     <div class="flex flex-col items-center gap-1">
                         <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo MGMP BIG SMK" class="h-12 md:h-14 w-auto">
-                        <span class="text-xs md:text-sm text-slate-500 font-medium">MGMP BIG SMK</span>
+                        <span class="text-xs md:text-sm text-slate-500 font-medium">MGMP BIG</span>
                     </div>
                     <div class="flex flex-col items-center gap-1">
                         <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="h-14 md:h-16 w-auto">
+                        <span class="text-xs md:text-sm text-slate-500 font-medium">Olympiad</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1">
+                        <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo BSJC" class="h-12 md:h-14 w-auto">
+                        <span class="text-xs md:text-sm text-slate-500 font-medium">BSJC 2026</span>
                     </div>
                 </div>
                 
@@ -201,7 +224,7 @@
                                     <a href="https://sites.google.com/view/bsjc2025/unduhan" target="_blank" class="text-blue-600 font-bold hover:underline">🔗 Link Unduhan Aplikasi</a>
                                 </li>
                                 <li class="leading-relaxed">
-                                    Ikuti instruksi Panitia/Jurusita (PJ) di grup resmi Olympiad (WA/Telegram) jika ada kendala.
+                                    Ikuti instruksi Panitia/Penanggungjawab di grup WA resmi Olympiad jika ada kendala.
                                 </li>
                             </ol>
                             
@@ -222,6 +245,7 @@
 
     <!-- Loader Overlay -->
     <div id="loader" class="fixed inset-0 brand-gradient z-40 flex flex-col items-center justify-center hidden">
+        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="w-24 h-24 md:w-32 md:h-32 object-contain mb-4 animate-pulse">
         <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
         <p class="text-white font-semibold">Sedang mengambil data...</p>
     </div>
