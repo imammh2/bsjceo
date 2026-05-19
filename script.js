@@ -2,7 +2,7 @@
    BSJC English Olympiad 2026 - JavaScript
    ============================================ */
 
-const API_URL = 'https://script.google.com/macros/s/AKfycbyIy1FkoNizcqaydxsmhItci52IwEWQMFdlhiA2saRRTF1zPwazgOVvagGYEQOIsV01/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbymTFdVEsYXMcjT0lsEQxlj-uMBniyiw0OhBQqP-AanYph7Xxe-w7K5UeSwcLxihXVVlw/exec';
 
 const searchSection = document.getElementById('search-section');
 const printableArea = document.getElementById('printable-area');
