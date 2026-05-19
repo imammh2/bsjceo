@@ -16,6 +16,23 @@ const submitBtn = document.getElementById('submitBtn');
 const resultContainer = document.getElementById('result-container');
 const announcementSection = document.getElementById('announcement-section');
 const loader = document.getElementById('loader');
+const errorModal = document.getElementById('error-modal');
+const errorModalMessage = document.getElementById('error-modal-message');
+const errorModalClose = document.getElementById('error-modal-close');
+const errorModalBackdrop = document.getElementById('error-modal-backdrop');
+
+// Error Modal Functions
+function showErrorModal(message) {
+    errorModalMessage.textContent = message;
+    errorModal.classList.remove('hidden');
+}
+
+function hideErrorModal() {
+    errorModal.classList.add('hidden');
+}
+
+errorModalClose.addEventListener('click', hideErrorModal);
+errorModalBackdrop.addEventListener('click', hideErrorModal);
 
 /* ============================================
    Spoiler Toggle
@@ -91,6 +108,12 @@ kabKotaSelect.addEventListener('change', async function() {
 submitBtn.addEventListener('click', async function(e) {
     e.preventDefault();
 
+    // Validasi email harus diisi
+    if (!emailInput.value.trim()) {
+        showErrorModal('Mohon isi email pendaftaran terlebih dahulu!');
+        return;
+    }
+
     const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
     submitBtn.innerHTML = '<svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Sedang Mencari...';
@@ -164,11 +187,11 @@ submitBtn.addEventListener('click', async function(e) {
                     </div>
                     <div>
                         <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Jadwal Simulasi</dt>
-                        <dd class="text-base font-semibold text-slate-800">Selasa, 06 Jan 2026 <br><small class="text-slate-500">(13.00 - 23.59)</small></dd>
+                        <dd class="text-base font-semibold text-slate-800">Kamis-Jumat, 21-22 Mei 2026<br><small class="text-slate-500"></small></dd>
                     </div>
                     <div>
                         <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Jadwal Penyisihan</dt>
-                        <dd class="text-base font-semibold text-slate-800">Kamis, 08 Jan 2026 <br><small class="text-slate-500">SMP: 13.00-14.00 | SMK: 14.30-16.30</small></dd>
+                        <dd class="text-base font-semibold text-slate-800">Sabtu, 23 Mei 2026<br><small class="text-slate-500"></small></dd>
                     </div>
                 </dl>
                 
@@ -191,8 +214,8 @@ submitBtn.addEventListener('click', async function(e) {
                     <div style="font-family: 'Inter', sans-serif; padding: 20px; color: #1e293b;">
                         <!-- Header -->
                         <div style="text-align: center; margin-bottom: 20px; padding-bottom: 15px; border-bottom: 2px solid #46A6FF;">
-                            <h1 style="font-size: 18px; font-weight: 800; color: #1473E6; margin: 0 0 5px 0;">BIG SMK Jatim Cup</h1>
-                            <p style="font-size: 14px; font-weight: 600; color: #475569; margin: 0;">Junior Level - English Olympiad 2026</p>
+                            <h1 style="font-size: 18px; font-weight: 800; color: #1473E6; margin: 0 0 5px 0;">BIG SMK Jatim Cup Junior Level</h1>
+                            <p style="font-size: 14px; font-weight: 600; color: #475569; margin: 0;">English Olympiad 2026</p>
                             <div style="height: 2px; background: linear-gradient(135deg, #46A6FF 0%, #1473E6 100%); margin-top: 10px;"></div>
                         </div>
                         
@@ -227,11 +250,11 @@ submitBtn.addEventListener('click', async function(e) {
                             </tr>
                             <tr>
                                 <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Jadwal Simulasi</td>
-                                <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; color: #1e293b;">Selasa, 06 Jan 2026 (13.00 - 23.59)</td>
+                                <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; color: #1e293b;">Kamis-Jumat, 21-22 Mei 2026</td>
                             </tr>
                             <tr>
                                 <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 600; color: #64748b;">Jadwal Penyisihan</td>
-                                <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; color: #1e293b;">Kamis, 08 Jan 2026<br><span style="font-size: 11px; color: #64748b;">SMP: 13.00-14.00 | SMK: 14.30-16.30</span></td>
+                                <td style="padding: 8px 5px; border-bottom: 1px solid #e2e8f0; font-size: 12px; font-weight: 700; color: #1e293b;">Sabtu, 23 Mei 2026<br><span style="font-size: 11px; color: #64748b;"></span></td>
                             </tr>
                         </table>
                         
@@ -239,9 +262,9 @@ submitBtn.addEventListener('click', async function(e) {
                         <div style="background: #fffbeb; border: 1px solid #f59e0b; border-radius: 8px; padding: 15px; margin-top: 15px;">
                             <h3 style="font-size: 14px; font-weight: 700; color: #b45309; margin: 0 0 10px 0; text-align: center;">📢 PENGUMUMAN PENTING</h3>
                             <ol style="font-size: 11px; color: #92400e; margin: 0; padding-left: 18px; line-height: 1.8;">
-                                <li><strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi (06 Jan 2026)</em> dan <em>Penyisihan (08 Jan 2026)</em>.</li>
+                                <li><strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi</em> dan <em>Penyisihan</em>.</li>
                                 <li>Wajib instal aplikasi <strong>Safeexambrowser Olympiad</strong> sebelum simulasi.</li>
-                                <li>Ikuti instruksi Panitia/Penanggungjawab di grup WA resmi Olympiad jika ada kendala.</li>
+                                <li>Ikuti instruksi Panitia/Penanggungjawab di grup WA resmi Olympiad.</li>
                             </ol>
                             <p style="font-size: 10px; color: #dc2626; text-align: center; margin: 10px 0 0 0; padding-top: 8px; border-top: 1px solid #fcd34d; font-style: italic;">Rahasiakan akun Anda. Jangan berikan kepada orang lain.</p>
                         </div>
