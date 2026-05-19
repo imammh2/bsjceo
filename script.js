@@ -5,19 +5,94 @@
 const API_URL = 'https://script.google.com/macros/s/AKfycbyIy1FkoNizcqaydxsmhItci52IwEWQMFdlhiA2saRRTF1zPwazgOVvagGYEQOIsV01/exec';
 
 const searchSection = document.getElementById('search-section');
-const form = document.getElementById('checkForm');
+const spoilerToggle = document.getElementById('spoiler-toggle');
+const searchForm = document.getElementById('search-form');
+const spoilerArrow = document.getElementById('spoiler-arrow');
+const kabKotaSelect = document.getElementById('kab_kota');
+const sekolahSelect = document.getElementById('asal_sekolah');
+const emailInput = document.getElementById('email');
 const submitBtn = document.getElementById('submitBtn');
 const resultContainer = document.getElementById('result-container');
 const announcementSection = document.getElementById('announcement-section');
 const loader = document.getElementById('loader');
 
-// Handle form submission
-form.addEventListener('submit', async (e) => {
+/* ============================================
+   Spoiler Toggle
+   ============================================ */
+spoilerToggle.addEventListener('click', function() {
+    const isHidden = searchForm.classList.contains('hidden');
+    if (isHidden) {
+        searchForm.classList.remove('hidden');
+        spoilerArrow.classList.add('rotate-180');
+    } else {
+        searchForm.classList.add('hidden');
+        spoilerArrow.classList.remove('rotate-180');
+    }
+});
+
+/* ============================================
+   Load Cities on Page Load
+   ============================================ */
+document.addEventListener('DOMContentLoaded', async function() {
+    try {
+        const response = await fetch(`${API_URL}?action=getCities`);
+        const cities = await response.json();
+        cities.sort();
+        
+        kabKotaSelect.innerHTML = '<option value="">Pilih Kabupaten/Kota...</option>';
+        cities.forEach(city => {
+            const option = document.createElement('option');
+            option.value = city;
+            option.textContent = city;
+            kabKotaSelect.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error loading cities:', error);
+        kabKotaSelect.innerHTML = '<option value="">Gagal memuat data</option>';
+    }
+});
+
+/* ============================================
+   Load Schools on City Change
+   ============================================ */
+kabKotaSelect.addEventListener('change', async function() {
+    const selectedCity = kabKotaSelect.value;
+    sekolahSelect.disabled = true;
+    sekolahSelect.innerHTML = '<option value="">Memuat sekolah...</option>';
+    
+    if (!selectedCity) {
+        sekolahSelect.innerHTML = '<option value="">Pilih kabupaten/kota terlebih dahulu</option>';
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_URL}?action=getSchools&city=${encodeURIComponent(selectedCity)}`);
+        const schools = await response.json();
+        schools.sort();
+        
+        sekolahSelect.innerHTML = '<option value="">Pilih Sekolah...</option>';
+        schools.forEach(school => {
+            const option = document.createElement('option');
+            option.value = school;
+            option.textContent = school;
+            sekolahSelect.appendChild(option);
+        });
+        sekolahSelect.disabled = false;
+    } catch (error) {
+        console.error('Error loading schools:', error);
+        sekolahSelect.innerHTML = '<option value="">Gagal memuat sekolah</option>';
+    }
+});
+
+/* ============================================
+   Handle Form Submission
+   ============================================ */
+submitBtn.addEventListener('click', async function(e) {
     e.preventDefault();
 
-    const originalBtnText = submitBtn.textContent;
+    const originalBtnText = submitBtn.innerHTML;
     submitBtn.disabled = true;
-    submitBtn.textContent = 'Sedang Mencari Data...';
+    submitBtn.innerHTML = '<svg class="animate-spin w-5 h-5 mr-2" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>Sedang Mencari...';
     
     resultContainer.style.display = 'none';
     announcementSection.style.display = 'none'; 
@@ -34,9 +109,10 @@ form.addEventListener('submit', async (e) => {
 
     const formData = {
         nama: "",
-        email: document.getElementById('email').value,
+        email: emailInput.value,
         password: "",
-        asal_sekolah: "",
+        asal_sekolah: sekolahSelect.value,
+        kab_kota: kabKotaSelect.value,
         logInfo: infoArray
     };
 
@@ -49,11 +125,12 @@ form.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.status === 'success') {
-            searchSection.classList.add('hidden');
+            // Hide search form
+            searchForm.classList.add('hidden');
+            spoilerArrow.classList.remove('rotate-180');
             
             const data = result.data;
             resultContainer.style.display = 'block';
-            resultContainer.className = 'bg-white border border-slate-200 rounded-xl overflow-hidden';
             
             // Render HTML Hasil
             resultContainer.innerHTML = `
@@ -127,29 +204,23 @@ form.addEventListener('submit', async (e) => {
             });
 
         } else if (result.status === 'limit_reached') {
-            searchSection.classList.remove('hidden');
             resultContainer.style.display = 'block';
-            resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
-            resultContainer.innerHTML = `<p class="text-red-600 font-semibold">⚠️ ${result.message}</p>`;    
-            submitBtn.textContent = 'Batas Pencarian Tercapai';
+            resultContainer.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-center"><p class="text-red-600 font-semibold">⚠️ ${result.message}</p></div>`;    
+            submitBtn.innerHTML = 'Batas Pencarian Tercapai';
             return;
         } else {
-            searchSection.classList.remove('hidden');
             resultContainer.style.display = 'block';
-            resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
-            resultContainer.innerHTML = `<p class="text-red-600 font-semibold">❌ ${result.message}</p>`;
+            resultContainer.innerHTML = `<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-center"><p class="text-red-600 font-semibold">❌ ${result.message}</p></div>`;
         }
     } catch (error) {
         console.error(error);
-        searchSection.classList.remove('hidden');
         resultContainer.style.display = 'block';
-        resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
-        resultContainer.innerHTML = '<p class="text-red-600 font-semibold">Gagal terhubung ke server. Silakan coba lagi nanti.</p>';
+        resultContainer.innerHTML = '<div class="bg-red-50 border border-red-200 rounded-xl p-4 text-center"><p class="text-red-600 font-semibold">Gagal terhubung ke server. Silakan coba lagi nanti.</p></div>';
     } finally {
         loader.classList.add('hidden');
         if (submitBtn.textContent !== 'Batas Pencarian Tercapai') {
             submitBtn.disabled = false;
-            submitBtn.textContent = originalBtnText;
+            submitBtn.innerHTML = originalBtnText;
         }
     }
 });
