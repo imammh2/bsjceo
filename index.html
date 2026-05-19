@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cek Data Peserta - BIG SMK Jatim Cup Junior Level- English Olympiad (BSJC-JL EO) 2026</title>
+    
+    <meta name="description" content="Halaman resmi untuk cek dan verifikasi data peserta English Olympiad (BSJC-JL EO) 2026.">
+    <meta name="keywords" content="Olimpiade Bahasa Inggris, SMK Jawa Timur, Cek Data Peserta, English Olympiad (BSJC-JL EO) 2026">
+    <meta name="author" content="MGMP Bahasa Inggris SMK Provinsi Jawa Timur">
+    <link rel="canonical" href="https://bsjc-eo2025.netlify.app/"> 
+    <meta property="og:title" content="Cek Data Peserta - Olympiad BIG SMK Jatim Cup 2026">
+    <meta property="og:description" content="Verifikasi data Anda dan dapatkan username untuk simulasi dan babak penyisihan.">
+    <meta property="og:image" content="https://bima-s3.b-cdn.net/logourl-1744025026665.png"> 
+    <meta property="og:url" content="https://bsjc-eo2025.netlify.app/"> 
+    <meta property="og:type" content="website">
+
+    <link rel="icon" href="https://bima-s3.b-cdn.net/logourl-1744025026665.png" type="image/png">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="splash-logo">
+        <h1 class="splash-title">BSJC JL English Olympiad 2026</h1>
+        <p class="splash-subtitle">Cek Data Peserta</p>
+        <div class="loader-bar-container">
+            <div class="loader-bar"></div>
+        </div>
+        <p class="loader-text">Memuat data...</p>
+    </div>
+
+    <div class="top-bar"></div>
+
+    <div class="main-wrapper">
+        <div class="container">
+            
+            <div id="search-section">
+                <div class="logo-container">
+                    <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo MGMP BIG SMK Jatim" crossorigin="anonymous">
+                </div>
+                <h2>Cek Data Peserta</h2>
+                <h3>BSJC JL English Olympiad 2026</h3>
+                
+                <form id="checkForm">
+                    <div class="input-group">
+                        <label for="email">Email Pendaftaran</label>
+                        <input type="email" id="email" placeholder="contoh@email.com" required>
+                    </div>
+
+                    <button type="submit" id="submitBtn">🔍 Cari Data Saya</button>
+                </form>
+            </div>
+
+            <div id="printable-area">
+                <div id="result-container" style="display: none;"></div>
+
+                <div id="announcement-section">
+                    <article class="card" role="article" aria-labelledby="judul-pengumuman">
+                        <header>
+                            <h1 id="judul-pengumuman">📢 PENGUMUMAN PENTING</h1>
+                            <p class="lead">Simpan informasi akun Anda. Berlaku untuk Simulasi & Penyisihan.</p>
+                        </header>
+                        <section aria-label="instruksi utama">
+                            <ol>
+                                <li>
+                                    <strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi (21-22 Mei 2026)</em> dan <em>Penyisihan (23 Mei 2026)</em>.
+                                </li>
+                                <li>
+                                    Wajib instal aplikasi <strong>Safeexambrowser Olympiad</strong> sebelum simulasi. <br>
+                                    <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" style="color: #d97706; font-weight: bold;">🔗 Link Unduhan Aplikasi</a>
+                                </li>
+                                <li>
+                                    Ikuti instruksi Panitia/Jurusita (PJ) di grup WA resmi Olympiad jika ada kendala.
+                                </li>
+                            </ol>
+                        </section>
+                        <footer>
+                            <p class="note">Rahasiakan akun Anda. Jangan berikan kepada orang lain.</p>
+                        </footer>
+                    </article>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+    <footer class="site-footer">
+        <b>© 2026 MGMP Bahasa Inggris SMK Provinsi Jawa Timur</b><br/><small>By Olympiad Team</small>
+    </footer>
+
+    <div id="loader" style="display: none;">
+        <div class="spinner"></div>
+        <p>Sedang mengambil data...</p>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

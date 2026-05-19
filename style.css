@@ -1,0 +1,475 @@
+/* ============================================
+   BSJC English Olympiad 2025 - Styles
+   ============================================ */
+
+:root {
+    /* Gradasi Biru - Ungu - Merah */
+    --brand-gradient: linear-gradient(135deg, #0d47a1 0%, #7b1fa2 50%, #d32f2f 100%);
+    --primary-blue: #1565c0;
+    --bg-color: #f3f4f6;
+    --card-bg: #ffffff;
+    --text-dark: #1f2937;
+    --text-muted: #6b7280;
+    --border-color: #e5e7eb;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+* {
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-dark);
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Top Decoration Bar */
+.top-bar {
+    width: 100%;
+    height: 8px;
+    background: var(--brand-gradient);
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 100;
+}
+
+.main-wrapper {
+    width: 100%;
+    max-width: 900px;
+    padding: 2rem 1rem;
+    flex: 1;
+    margin-top: 10px; /* Space for top bar */
+}
+
+/* Container & Card Styling */
+.container {
+    background: var(--card-bg);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    padding: 2rem;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Header Section */
+.logo-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.logo-container img {
+    height: 80px;
+    width: auto;
+    object-fit: contain;
+}
+
+h2 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    text-align: center;
+    margin: 0.5rem 0;
+    background: var(--brand-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1.2;
+}
+
+h3 {
+    font-size: 0.95rem;
+    text-align: center;
+    color: var(--text-muted);
+    margin-top: 0;
+    margin-bottom: 2rem;
+    font-weight: 500;
+}
+
+/* Form Styling */
+.input-group {
+    margin-bottom: 1.25rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    color: var(--text-dark);
+}
+
+input, select {
+    width: 100%;
+    padding: 12px 16px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    background-color: #fff;
+    transition: all 0.2s;
+    font-family: inherit;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: #7b1fa2; /* Purple from gradient */
+    box-shadow: 0 0 0 3px rgba(123, 31, 162, 0.1);
+}
+
+select:disabled {
+    background-color: #f9fafb;
+    color: #9ca3af;
+    cursor: not-allowed;
+}
+
+button#submitBtn {
+    width: 100%;
+    padding: 14px;
+    background: var(--brand-gradient);
+    color: white;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: opacity 0.2s, transform 0.1s;
+    margin-top: 1rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+button#submitBtn:active {
+    transform: scale(0.98);
+}
+
+button#submitBtn:disabled {
+    opacity: 0.7;
+    cursor: wait;
+}
+
+/* Loader Full Screen Overlay */
+#loader {
+    position: fixed;       /* Membuat elemen mengambang di atas konten lain */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;         /* Tinggi memenuhi layar */
+    background-color: rgba(255, 255, 255, 0.9); /* Latar putih transparan */
+    z-index: 9999;         /* Pastikan loader berada di lapisan paling atas */
+    
+    /* Mengatur Spinner ke tengah */
+    display: none;         /* Default sembunyi, nanti dinyalakan JS */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(5px); /* Efek blur estetik pada background (opsional) */
+}
+
+/* Memperbesar ukuran spinner agar lebih jelas */
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 5px solid #e5e7eb;
+    border-top: 5px solid #d32f2f; /* Warna Merah */
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+    margin-bottom: 1rem;
+}
+
+#loader p {
+    font-weight: 600;
+    color: #1f2937;
+    margin-top: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Result Card Styles */
+#search-section {
+    transition: max-height 0.5s ease-out, opacity 0.5s ease-out;
+    max-height: 2000px; /* Arbitrary large height */
+    opacity: 1;
+    overflow: hidden;
+}
+
+#search-section.collapsed {
+    max-height: 0;
+    opacity: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.result-card {
+    background: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-md);
+    padding: 0; /* Padding managed inside to handle header */
+    overflow: hidden;
+    animation: fadeIn 0.5s ease;
+}
+
+.result-card h4 {
+    background: #ecfdf5; /* Green tint */
+    color: #065f46;
+    margin: 0;
+    padding: 1rem;
+    text-align: center;
+    font-size: 1.1rem;
+    border-bottom: 1px dashed #a7f3d0;
+}
+
+.result-card dl {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+    margin: 0;
+    padding: 1.5rem;
+}
+
+.result-card dt {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 0.2rem;
+}
+
+.result-card dd {
+    margin: 0;
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    border-bottom: 1px solid #f3f4f6;
+    padding-bottom: 0.5rem;
+}
+
+.result-card dd strong {
+    color: #d32f2f; /* Highlight critical info */
+    background: #fff5f5;
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+.result-card dd:last-child {
+    border-bottom: none;
+}
+
+.error {
+    background-color: #fef2f2;
+    color: #b91c1c;
+    padding: 1rem;
+    border-radius: var(--radius-md);
+    border: 1px solid #fecaca;
+    text-align: center;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+/* Announcement Section */
+#announcement-section {
+    margin-top: 2rem;
+    display: none;
+    animation: fadeIn 0.6s ease;
+}
+
+.card {
+    background-color: #fffbeb; /* Yellow tint */
+    border: 1px solid #fcd34d;
+    border-radius: var(--radius-md);
+    padding: 1.5rem;
+}
+
+.card h1 {
+    font-size: 1.1rem;
+    color: #92400e;
+    margin-top: 0;
+    text-align: center;
+}
+
+.card .lead {
+    font-size: 0.9rem;
+    color: #78350f;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.card ol {
+    padding-left: 1.2rem;
+    color: #4b5563;
+}
+
+.card li {
+    margin-bottom: 0.8rem;
+    line-height: 1.5;
+    font-size: 0.95rem;
+}
+
+.card .note {
+    font-size: 0.8rem;
+    color: #ef4444;
+    text-align: center;
+    margin-top: 1.5rem;
+    font-style: italic;
+    border-top: 1px dashed #fcd34d;
+    padding-top: 0.5rem;
+}
+
+/* Action Buttons */
+.result-actions {
+    padding: 1.5rem;
+    text-align: center;
+    background: #f9fafb;
+    border-top: 1px solid var(--border-color);
+}
+
+#savePdfBtn {
+    background-color: var(--primary-blue);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1rem;
+}
+
+.qr-code-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px dashed var(--border-color);
+}
+
+.qr-code-container img {
+    width: 100px;
+    height: 100px;
+    border: 4px solid white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.site-footer {
+    margin-top: auto;
+    padding: 2rem 1rem;
+    text-align: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+    width: 100%;
+}
+
+/* Print Specifics */
+@media print {
+    .top-bar, .site-footer, #search-section, #savePdfBtn { display: none !important; }
+    body, .main-wrapper, .container { background: white; margin: 0; padding: 0; box-shadow: none; width: 100%; max-width: 100%; }
+    #printable-area { display: block !important; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile Adjustments */
+@media (min-width: 600px) {
+    .result-card dl {
+        grid-template-columns: 140px 1fr; /* Label - Value layout on bigger screens */
+        align-items: baseline;
+    }
+    .result-card dt {
+        margin-bottom: 0;
+    }
+    .result-card dd {
+        border-bottom: none; /* Remove separator on desktop view inside grid */
+    }
+}
+
+/* ============================================
+   Splash Screen Styles
+   ============================================ */
+
+#splash-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    background: var(--brand-gradient);
+    z-index: 10000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+#splash-screen.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+#splash-screen .splash-logo {
+    width: 150px;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 2rem;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+#splash-screen .splash-title {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 800;
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+#splash-screen .splash-subtitle {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 1rem;
+    font-weight: 500;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+/* Loader Bar */
+.loader-bar-container {
+    width: 80%;
+    max-width: 300px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+}
+
+.loader-bar {
+    height: 100%;
+    width: 0%;
+    background: white;
+    border-radius: 4px;
+    transition: width 0.3s ease;
+}
+
+.loader-text {
+    color: rgba(255, 255, 255, 0.9);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
