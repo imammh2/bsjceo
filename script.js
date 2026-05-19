@@ -1,5 +1,5 @@
 /* ============================================
-   BSJC English Olympiad 2025 - JavaScript
+   BSJC English Olympiad 2026 - JavaScript
    ============================================ */
 
 const API_URL = 'https://script.google.com/macros/s/AKfycbyIy1FkoNizcqaydxsmhItci52IwEWQMFdlhiA2saRRTF1zPwazgOVvagGYEQOIsV01/exec';
@@ -11,56 +11,7 @@ const resultContainer = document.getElementById('result-container');
 const announcementSection = document.getElementById('announcement-section');
 const loader = document.getElementById('loader');
 
-/* // ================================================================
-   KODE NONAKTIF (DIKOMENTAR SEMENTARA) - UNTUK KEMBALIKAN FITUR LAMA
-   ================================================================
-   
-
-const citySelect = document.getElementById('kab_kota');
-const schoolSelect = document.getElementById('asal_sekolah');
-
-// 1. Fetch cities on page load
-document.addEventListener('DOMContentLoaded', async () => {
-    try {
-        const response = await fetch(`${API_URL}?action=getCities`);
-        const cities = await response.json();
-        cities.sort().forEach(city => {
-            const option = new Option(city, city);
-            citySelect.add(option);
-        });
-    } catch (error) {
-        // Silent fail or alert
-        // alert('Gagal memuat daftar kota. Periksa koneksi Anda.');
-    }
-});
-
-// 2. Fetch schools on city change
-citySelect.addEventListener('change', async () => {
-    const selectedCity = citySelect.value;
-    schoolSelect.disabled = true;
-    schoolSelect.innerHTML = '<option value="">Memuat sekolah...</option>';
-    if (!selectedCity) return;
-
-    try {
-        const response = await fetch(`${API_URL}?action=getSchools&city=${encodeURIComponent(selectedCity)}`);
-        const schools = await response.json();
-        schoolSelect.innerHTML = '<option value="" disabled selected>Pilih Sekolah...</option>';
-        schools.sort().forEach(school => {
-            const option = new Option(school, school);
-            schoolSelect.add(option);
-        });
-        schoolSelect.disabled = false;
-    } catch (error) {
-        schoolSelect.innerHTML = '<option value="">Gagal memuat sekolah</option>';
-    }
-});
-
-// ================================================================
-   AKHIR KODE NONAKTIF
-   ================================================================
-*/
-
-// 3. Handle form submission
+// Handle form submission
 form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
@@ -70,7 +21,7 @@ form.addEventListener('submit', async (e) => {
     
     resultContainer.style.display = 'none';
     announcementSection.style.display = 'none'; 
-    loader.style.display = 'flex';
+    loader.classList.remove('hidden');
 
     const timestamp = new Date().toLocaleString("id-ID", { timeZone: "Asia/Jakarta" });
     const infoArray = [
@@ -82,17 +33,10 @@ form.addEventListener('submit', async (e) => {
     ];
 
     const formData = {
-        // nama: document.getElementById('nama').value, // DIKOMENTAR
-        nama: "", // Kirim kosong agar JS tidak error
-        
+        nama: "",
         email: document.getElementById('email').value,
-        
-        // password: document.getElementById('password').value, // DIKOMENTAR
-        password: "", // Kirim kosong
-        
-        // asal_sekolah: schoolSelect.value, // DIKOMENTAR
-        asal_sekolah: "", // Kirim kosong
-        
+        password: "",
+        asal_sekolah: "",
         logInfo: infoArray
     };
 
@@ -105,101 +49,104 @@ form.addEventListener('submit', async (e) => {
         const result = await response.json();
 
         if (result.status === 'success') {
-            // Animasi collapse form
-            searchSection.classList.add('collapsed');
+            searchSection.classList.add('hidden');
             
             const data = result.data;
             resultContainer.style.display = 'block';
-            resultContainer.className = 'result-card';
+            resultContainer.className = 'bg-white border border-slate-200 rounded-xl overflow-hidden';
             
             // Render HTML Hasil
             resultContainer.innerHTML = `
-                <h4>✅ Data Peserta Ditemukan</h4>
-                <dl>
-                    <dt>Nama Lengkap</dt>
-                    <dd>${data.nama}</dd>
-                    
-                    <dt>Username Lomba</dt>
-                    <dd><strong>${data.username}</strong></dd>
-                    
-                    <dt>Password Lomba</dt>
-                    <dd><strong>${data.pass_olymp}</strong></dd>
-
-                    <dt>Jenjang Lomba</dt>
-                    <dd><strong>${data.jenjang}</strong></dd>
-                    
-                    <dt>Asal Sekolah</dt>
-                    <dd>${data.asal_sekolah}</dd>
-                    
-                    <dt>Kabupaten/Kota</dt>
-                    <dd>${data.kab_kota}</dd>
-
-                    <dt>Jadwal Simulasi</dt>
-                    <dd>Selasa, 06 Jan 2026 <br><small>(13.00 - 23.59)</small></dd>
-
-                    <dt>Jadwal Penyisihan</dt>
-                    <dd>Kamis, 08 Jan 2026 <br>
-                        <small>SMP: 13.00-14.00 | SMK: 14.30-16.30</small>
-                    </dd>
-
-                    <dt>Jadwal Final</dt>
-                    <dd>Selasa, 13 Jan 2026 <br>
-                        <small>SMP: 13.00-14.00 | SMK: 14.30-16.30</small>
-                    </dd>
+                <div class="bg-emerald-50 border-b border-emerald-200 p-4 text-center">
+                    <h4 class="text-lg font-bold text-emerald-700">✅ Data Peserta Ditemukan</h4>
+                </div>
+                <dl class="grid grid-cols-1 md:grid-cols-2 gap-4 p-4 md:p-6">
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Nama Lengkap</dt>
+                        <dd class="text-base font-semibold text-slate-800">${data.nama}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Username Lomba</dt>
+                        <dd class="text-base font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">${data.username}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Password Lomba</dt>
+                        <dd class="text-base font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded">${data.pass_olymp}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Jenjang Lomba</dt>
+                        <dd class="text-base font-semibold text-slate-800">${data.jenjang}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Asal Sekolah</dt>
+                        <dd class="text-base font-semibold text-slate-800">${data.asal_sekolah}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Kabupaten/Kota</dt>
+                        <dd class="text-base font-semibold text-slate-800">${data.kab_kota}</dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Jadwal Simulasi</dt>
+                        <dd class="text-base font-semibold text-slate-800">Selasa, 06 Jan 2026 <br><small class="text-slate-500">(13.00 - 23.59)</small></dd>
+                    </div>
+                    <div>
+                        <dt class="text-xs font-semibold text-slate-500 uppercase tracking-wide mb-1">Jadwal Penyisihan</dt>
+                        <dd class="text-base font-semibold text-slate-800">Kamis, 08 Jan 2026 <br><small class="text-slate-500">SMP: 13.00-14.00 | SMK: 14.30-16.30</small></dd>
+                    </div>
                 </dl>
                 
-                <div class="result-actions">
-                    <button id="savePdfBtn">📄 Simpan Bukti (PDF)</button>
+                <div class="p-4 md:p-6 bg-slate-50 border-t border-slate-200 text-center">
+                    <button id="savePdfBtn" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all">
+                        📄 Simpan Bukti (PDF)
+                    </button>
                 </div>
             `;
 
             announcementSection.style.display = 'block';
 
-            // Tambahkan Event Listener untuk tombol PDF (harus di dalam blok sukses karena tombol baru dibuat)
+            // PDF Button Event Listener
             document.getElementById('savePdfBtn').addEventListener('click', function() {
-                // Sembunyikan tombol saat generate PDF agar tidak ikut ter-render jelek
                 this.style.display = 'none';
 
                 const elementToSave = document.getElementById('printable-area');
                 const options = {
                     margin: 0.2,
-                    filename: `BSJC2025_${data.username}.pdf`,
+                    filename: `BSJC2026_${data.username}.pdf`,
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: { 
-                        scale: 2, // Scale tinggi agar tajam di HP
-                        useCORS: true, // Agar gambar dari external/CDN termuat
+                        scale: 2,
+                        useCORS: true,
                         scrollY: 0
                     },
                     jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' } 
                 };
 
                 html2pdf().set(options).from(elementToSave).save().then(() => {
-                    // Munculkan kembali tombol setelah download selesai
                     this.style.display = 'block';
                 });
             });
 
         } else if (result.status === 'limit_reached') {
-            searchSection.classList.remove('collapsed');
+            searchSection.classList.remove('hidden');
             resultContainer.style.display = 'block';
-            resultContainer.className = 'error';
-            resultContainer.innerHTML = `<p>⚠️ ${result.message}</p>`;    
+            resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
+            resultContainer.innerHTML = `<p class="text-red-600 font-semibold">⚠️ ${result.message}</p>`;    
             submitBtn.textContent = 'Batas Pencarian Tercapai';
-            return; // Stop here, dont enable button
+            return;
         } else {
-            searchSection.classList.remove('collapsed');
+            searchSection.classList.remove('hidden');
             resultContainer.style.display = 'block';
-            resultContainer.className = 'error';
-            resultContainer.innerHTML = `<p>❌ ${result.message}</p>`;
+            resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
+            resultContainer.innerHTML = `<p class="text-red-600 font-semibold">❌ ${result.message}</p>`;
         }
     } catch (error) {
         console.error(error);
-        searchSection.classList.remove('collapsed');
+        searchSection.classList.remove('hidden');
         resultContainer.style.display = 'block';
-        resultContainer.className = 'error';
-        resultContainer.innerHTML = '<p>Gagal terhubung ke server. Silakan coba lagi nanti.</p>';
+        resultContainer.className = 'bg-red-50 border border-red-200 rounded-xl p-4 text-center';
+        resultContainer.innerHTML = '<p class="text-red-600 font-semibold">Gagal terhubung ke server. Silakan coba lagi nanti.</p>';
     } finally {
-        loader.style.display = 'none';
+        loader.classList.add('hidden');
         if (submitBtn.textContent !== 'Batas Pencarian Tercapai') {
             submitBtn.disabled = false;
             submitBtn.textContent = originalBtnText;
@@ -213,8 +160,8 @@ form.addEventListener('submit', async (e) => {
 
 document.addEventListener('DOMContentLoaded', function() {
     const splashScreen = document.getElementById('splash-screen');
-    const loaderBar = document.querySelector('.loader-bar');
-    const loaderText = document.querySelector('.loader-text');
+    const loaderBar = document.getElementById('loader-bar');
+    const loaderText = document.getElementById('loader-text');
     
     if (!splashScreen) return;
     
@@ -226,7 +173,6 @@ document.addEventListener('DOMContentLoaded', function() {
         'Selamat datang!'
     ];
     
-    // Function to update loader
     function updateLoader(percent, messageIndex) {
         if (loaderBar) {
             loaderBar.style.width = percent + '%';
@@ -236,7 +182,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     }
     
-    // Simulate loading process
     const loadingInterval = setInterval(function() {
         progress += Math.random() * 15;
         
@@ -244,11 +189,9 @@ document.addEventListener('DOMContentLoaded', function() {
             progress = 100;
             clearInterval(loadingInterval);
             
-            // Hide splash screen
             setTimeout(function() {
                 splashScreen.classList.add('hidden');
                 
-                // Remove splash screen from DOM after animation
                 setTimeout(function() {
                     splashScreen.style.display = 'none';
                 }, 500);
@@ -256,7 +199,6 @@ document.addEventListener('DOMContentLoaded', function() {
             
             updateLoader(100, messages.length - 1);
         } else {
-            // Update message based on progress
             let messageIndex = 0;
             if (progress >= 30) messageIndex = 1;
             if (progress >= 60) messageIndex = 2;

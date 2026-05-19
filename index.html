@@ -3,16 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cek Data Peserta - BIG SMK Jatim Cup Junior Level- English Olympiad (BSJC-JL EO) 2026</title>
+    <title>Cek Data Peserta - BIG SMK Jatim Cup - English Olympiad (BSJC EO) 2026</title>
     
-    <meta name="description" content="Halaman resmi untuk cek dan verifikasi data peserta English Olympiad (BSJC-JL EO) 2026.">
-    <meta name="keywords" content="Olimpiade Bahasa Inggris, SMK Jawa Timur, Cek Data Peserta, English Olympiad (BSJC-JL EO) 2026">
+    <meta name="description" content="Halaman resmi untuk cek dan verifikasi data peserta English Olympiad (BSJC EO) 2026.">
+    <meta name="keywords" content="Olimpiade Bahasa Inggris, SMK Jawa Timur, Cek Data Peserta, English Olympiad (BSJC EO) 2026">
     <meta name="author" content="MGMP Bahasa Inggris SMK Provinsi Jawa Timur">
-    <link rel="canonical" href="https://bsjc-eo2025.netlify.app/"> 
+    <link rel="canonical" href="https://bsjc-eo2026.netlify.app/"> 
     <meta property="og:title" content="Cek Data Peserta - Olympiad BIG SMK Jatim Cup 2026">
     <meta property="og:description" content="Verifikasi data Anda dan dapatkan username untuk simulasi dan babak penyisihan.">
     <meta property="og:image" content="https://bima-s3.b-cdn.net/logourl-1744025026665.png"> 
-    <meta property="og:url" content="https://bsjc-eo2025.netlify.app/"> 
+    <meta property="og:url" content="https://bsjc-eo2026.netlify.app/"> 
     <meta property="og:type" content="website">
 
     <link rel="icon" href="https://bima-s3.b-cdn.net/logourl-1744025026665.png" type="image/png">
@@ -23,105 +23,174 @@
     
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     
-    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: {
+                            sky: '#46A6FF',
+                            blue: '#1473E6',
+                        },
+                        brand: {
+                            gradient: 'linear-gradient(135deg, #46A6FF 0%, #1473E6 100%)',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #46A6FF 0%, #1473E6 100%);
+        }
+        
+        .glass-card {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        
+        .brand-gradient {
+            background: linear-gradient(135deg, #46A6FF 0%, #1473E6 100%);
+        }
+        
+        .loader-bar {
+            transition: width 0.3s ease;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        .animate-pulse {
+            animation: pulse 2s ease-in-out infinite;
+        }
+        
+        .animate-spin {
+            animation: spin 0.8s linear infinite;
+        }
+    </style>
 </head>
-<body>
+<body class="min-h-screen flex flex-col items-center">
     
     <!-- Splash Screen -->
-    <div id="splash-screen">
-        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="splash-logo">
-        <h1 class="splash-title">BSJC JL English Olympiad 2026</h1>
-        <p class="splash-subtitle">Cek Data Peserta</p>
-        <div class="loader-bar-container">
-            <div class="loader-bar"></div>
+    <div id="splash-screen" class="fixed inset-0 brand-gradient z-50 flex flex-col items-center justify-center">
+        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="w-32 h-32 md:w-40 md:h-40 object-contain mb-8 animate-pulse">
+        <h1 class="text-white text-xl md:text-2xl font-bold mb-2 text-center">BSJC English Olympiad 2026</h1>
+        <p class="text-white/90 text-base md:text-lg mb-8 text-center">Junior Level - English Olympiad</p>
+        
+        <div class="w-4/5 max-w-xs md:max-w-sm h-2 bg-white/30 rounded-full overflow-hidden mb-4">
+            <div id="loader-bar" class="loader-bar h-full bg-white rounded-full" style="width: 0%"></div>
         </div>
-        <p class="loader-text">Memuat data...</p>
+        <p id="loader-text" class="text-white/90 text-sm font-medium">Memuat data...</p>
     </div>
 
-    <div class="top-bar"></div>
+    <!-- Top Bar -->
+    <div class="w-full h-2 brand-gradient fixed top-0 left-0 z-10"></div>
 
-    <div class="main-wrapper">
-        <div class="container">
+    <!-- Main Content -->
+    <div class="w-full max-w-4xl px-4 py-8 flex-1 mt-4 flex justify-center">
+        <div class="w-full">
             
-            <div id="search-section">
-                <!-- Header with Multiple Logos -->
-                <div class="event-header">
-                    <div class="header-logos">
-                        <div class="logo-item">
-                            <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo Pemerintah Provinsi Jawa Timur" crossorigin="anonymous">
-                            <span class="logo-label">Pemprov Jawa Timur</span>
-                        </div>
-                        <div class="logo-item">
-                            <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo MGMP BIG SMK Jatim" crossorigin="anonymous">
-                            <span class="logo-label">MGMP BIG SMK</span>
-                        </div>
-                        <div class="logo-item mascot-logo">
-                            <img src="olympiad_mascot.png" alt="Olympiad Mascot">
-                        </div>
+            <!-- Event Header - Separate from Main Content -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 mb-6 text-center shadow-lg">
+                <div class="flex flex-wrap justify-center items-center gap-4 md:gap-8 mb-4">
+                    <div class="flex flex-col items-center gap-1">
+                        <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo Pemerintah Provinsi Jawa Timur" class="h-12 md:h-14 w-auto">
+                        <span class="text-xs md:text-sm text-slate-500 font-medium">Pemprov Jawa Timur</span>
                     </div>
-                    <div class="header-title">
-                        <h1>BIG SMK Jatim Cup Junior Level</h1>
-                        <p class="subtitle">English Olympiad 2026</p>
+                    <div class="flex flex-col items-center gap-1">
+                        <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo MGMP BIG SMK" class="h-12 md:h-14 w-auto">
+                        <span class="text-xs md:text-sm text-slate-500 font-medium">MGMP BIG SMK</span>
+                    </div>
+                    <div class="flex flex-col items-center gap-1">
+                        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="h-14 md:h-16 w-auto">
                     </div>
                 </div>
                 
-                <div class="divider"></div>
+                <h1 class="text-xl md:text-2xl font-extrabold text-blue-600 mb-1">BIG SMK Jatim Cup</h1>
+                <p class="text-base md:text-lg font-semibold text-slate-600">Junior Level - English Olympiad 2026</p>
                 
-                <h2>Cek Data Peserta</h2>
-                <h3>BSJC JL English Olympiad 2026</h3>
-                
-                <div class="form-spacer"></div>
-                
-                <form id="checkForm">
-                    <div class="input-group">
-                        <label for="email">Email Pendaftaran</label>
-                        <input type="email" id="email" placeholder="contoh@email.com" required>
-                    </div>
-
-                    <button type="submit" id="submitBtn">🔍 Cari Data Saya</button>
-                </form>
+                <div class="h-1 brand-gradient rounded-full mt-6 mx-auto w-3/5 max-w-40"></div>
             </div>
+            
+            <!-- Main Card -->
+            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
+                
+                <!-- Search Section -->
+                <div id="search-section">
+                    <h2 class="text-xl md:text-2xl font-bold text-center text-slate-800 mb-1">Cek Data Peserta</h2>
+                    <h3 class="text-sm md:text-base text-center text-slate-500 font-medium mb-6">BSJC JL English Olympiad 2026</h3>
+                    
+                    <div class="h-6"></div>
+                    
+                    <form id="checkForm" class="space-y-4 md:space-y-5">
+                        <div>
+                            <label for="email" class="block text-sm font-semibold text-slate-700 mb-2">Email Pendaftaran</label>
+                            <input type="email" id="email" placeholder="contoh@email.com" required
+                                class="w-full px-4 py-3 md:py-4 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
+                        </div>
 
-            <div id="printable-area">
-                <div id="result-container" style="display: none;"></div>
+                        <button type="submit" id="submitBtn" class="w-full py-3 md:py-4 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-base shadow-md transition-all hover:shadow-lg active:scale-95">
+                            🔍 Cari Data Saya
+                        </button>
+                    </form>
+                </div>
 
-                <div id="announcement-section">
-                    <article class="card" role="article" aria-labelledby="judul-pengumuman">
-                        <header>
-                            <h1 id="judul-pengumuman">📢 PENGUMUMAN PENTING</h1>
-                            <p class="lead">Simpan informasi akun Anda. Berlaku untuk Simulasi & Penyisihan.</p>
-                        </header>
-                        <section aria-label="instruksi utama">
-                            <ol>
-                                <li>
-                                    <strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi (21-22 Mei 2026)</em> dan <em>Penyisihan (23 Mei 2026)</em>.
+                <!-- Printable Area -->
+                <div id="printable-area">
+                    <div id="result-container" class="hidden"></div>
+
+                    <div id="announcement-section" class="hidden mt-8">
+                        <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 md:p-6">
+                            <h4 class="text-base md:text-lg font-bold text-amber-700 text-center mb-2">📢 PENGUMUMAN PENTING</h4>
+                            <p class="text-sm text-amber-800 text-center mb-4">Simpan informasi akun Anda. Berlaku untuk Simulasi & Penyisihan.</p>
+                            
+                            <ol class="list-decimal list-inside text-sm text-slate-600 space-y-2 pl-2">
+                                <li class="leading-relaxed">
+                                    <strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi (06 Jan 2026)</em> dan <em>Penyisihan (08 Jan 2026)</em>.
                                 </li>
-                                <li>
+                                <li class="leading-relaxed">
                                     Wajib instal aplikasi <strong>Safeexambrowser Olympiad</strong> sebelum simulasi. <br>
-                                    <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" style="color: #d97706; font-weight: bold;">🔗 Link Unduhan Aplikasi</a>
+                                    <a href="https://sites.google.com/view/bsjc2025/unduhan" target="_blank" class="text-blue-600 font-bold hover:underline">🔗 Link Unduhan Aplikasi</a>
                                 </li>
-                                <li>
-                                    Ikuti instruksi Panitia/Jurusita (PJ) di grup WA resmi Olympiad jika ada kendala.
+                                <li class="leading-relaxed">
+                                    Ikuti instruksi Panitia/Jurusita (PJ) di grup resmi Olympiad (WA/Telegram) jika ada kendala.
                                 </li>
                             </ol>
-                        </section>
-                        <footer>
-                            <p class="note">Rahasiakan akun Anda. Jangan berikan kepada orang lain.</p>
-                        </footer>
-                    </article>
+                            
+                            <p class="text-xs text-red-600 text-center mt-4 italic border-t border-amber-200 pt-2">Rahasiakan akun Anda. Jangan berikan kepada orang lain.</p>
+                        </div>
+                    </div>
                 </div>
-            </div>
 
+            </div>
         </div>
     </div>
     
-    <footer class="site-footer">
-        <b>© 2026 MGMP Bahasa Inggris SMK Provinsi Jawa Timur</b><br/><small>By Olympiad Team</small>
+    <!-- Footer -->
+    <footer class="w-full py-8 px-4 text-center text-white/80 text-sm">
+        <b>© 2026 MGMP Bahasa Inggris SMK Provinsi Jawa Timur</b><br>
+        <small>By Olympiad Team</small>
     </footer>
 
-    <div id="loader" style="display: none;">
-        <div class="spinner"></div>
-        <p>Sedang mengambil data...</p>
+    <!-- Loader Overlay -->
+    <div id="loader" class="fixed inset-0 brand-gradient z-40 flex flex-col items-center justify-center hidden">
+        <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
+        <p class="text-white font-semibold">Sedang mengambil data...</p>
     </div>
 
     <script src="script.js"></script>
