@@ -114,16 +114,134 @@ body {
     object-fit: contain;
 }
 
+/* Event Header with Multiple Logos */
+.event-header {
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.header-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1rem;
+}
+
+.logo-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.25rem;
+}
+
+.logo-item img {
+    height: 50px;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-item.mascot-logo img {
+    height: 60px;
+}
+
+.logo-label {
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.header-title {
+    margin-bottom: 0.5rem;
+}
+
+.header-title h1 {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary-blue);
+    margin: 0;
+    line-height: 1.2;
+}
+
+.header-title .subtitle {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-muted);
+    margin: 0.25rem 0 0 0;
+}
+
+.divider {
+    height: 3px;
+    background: var(--brand-gradient);
+    border-radius: 2px;
+    margin: 1.5rem auto;
+    width: 60%;
+    max-width: 200px;
+}
+
+.form-spacer {
+    height: 1.5rem;
+}
+
 /* Responsive Logo */
 @media (min-width: 768px) {
     .logo-container img {
         height: 100px;
+    }
+    
+    .header-logos {
+        gap: 1.5rem;
+    }
+    
+    .logo-item img {
+        height: 60px;
+    }
+    
+    .logo-item.mascot-logo img {
+        height: 70px;
+    }
+    
+    .logo-label {
+        font-size: 0.75rem;
+    }
+    
+    .header-title h1 {
+        font-size: 1.75rem;
+    }
+    
+    .header-title .subtitle {
+        font-size: 1.1rem;
     }
 }
 
 @media (min-width: 1024px) {
     .logo-container img {
         height: 120px;
+    }
+    
+    .header-logos {
+        gap: 2rem;
+    }
+    
+    .logo-item img {
+        height: 70px;
+    }
+    
+    .logo-item.mascot-logo img {
+        height: 80px;
+    }
+    
+    .logo-label {
+        font-size: 0.8rem;
+    }
+    
+    .header-title h1 {
+        font-size: 2rem;
+    }
+    
+    .header-title .subtitle {
+        font-size: 1.2rem;
     }
 }
 
