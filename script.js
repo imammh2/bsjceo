@@ -110,7 +110,7 @@ submitBtn.addEventListener('click', async function(e) {
 
     // Validasi email harus diisi
     if (!emailInput.value.trim()) {
-        showErrorModal('Mohon isi email pendaftaran terlebih dahulu!');
+        showErrorModal('Mohon isi email sesuai email saat pendaftaran terlebih dahulu!<br>Jika lupa silahkan hubungi PJ Lomba English Olympiad.');
         return;
     }
 
