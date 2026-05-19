@@ -61,10 +61,10 @@ body {
 
 .main-wrapper {
     width: 100%;
-    max-width: 900px;
-    padding: 2rem 1rem;
+    max-width: 1200px;
+    padding: 2rem 1.5rem;
     flex: 1;
-    margin-top: 10px; /* Space for top bar */
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
@@ -79,6 +79,27 @@ body {
     overflow: hidden;
     position: relative;
     border: 1px solid rgba(255, 255, 255, 0.3);
+    width: 100%;
+    max-width: 100%;
+}
+
+/* Responsive Container */
+@media (min-width: 768px) {
+    .container {
+        padding: 2.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .container {
+        padding: 3rem;
+    }
+}
+
+@media (min-width: 1280px) {
+    .container {
+        padding: 3.5rem;
+    }
 }
 
 /* Header Section */
@@ -91,6 +112,19 @@ body {
     height: 80px;
     width: auto;
     object-fit: contain;
+}
+
+/* Responsive Logo */
+@media (min-width: 768px) {
+    .logo-container img {
+        height: 100px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .logo-container img {
+        height: 120px;
+    }
 }
 
 h2 {
@@ -109,6 +143,25 @@ h3 {
     margin-top: 0;
     margin-bottom: 2rem;
     font-weight: 500;
+}
+
+/* Responsive Typography */
+@media (min-width: 768px) {
+    h2 {
+        font-size: 1.75rem;
+    }
+    h3 {
+        font-size: 1rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    h2 {
+        font-size: 2rem;
+    }
+    h3 {
+        font-size: 1.1rem;
+    }
 }
 
 /* Form Styling */
@@ -133,6 +186,28 @@ input, select {
     background-color: #fff;
     transition: all 0.2s;
     font-family: inherit;
+}
+
+/* Responsive Form */
+@media (min-width: 768px) {
+    .input-group {
+        margin-bottom: 1.5rem;
+    }
+    
+    input, select {
+        padding: 14px 18px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .input-group {
+        margin-bottom: 1.75rem;
+    }
+    
+    input, select {
+        padding: 16px 20px;
+        font-size: 1.05rem;
+    }
 }
 
 input:focus, select:focus {
@@ -283,6 +358,39 @@ button#submitBtn:disabled {
 
 .result-card dd:last-child {
     border-bottom: none;
+}
+
+/* Responsive Result Card */
+@media (min-width: 768px) {
+    .result-card dl {
+        grid-template-columns: 160px 1fr;
+        gap: 1.25rem;
+        padding: 2rem;
+    }
+    
+    .result-card dt {
+        margin-bottom: 0;
+    }
+    
+    .result-card dd {
+        border-bottom: none;
+    }
+}
+
+@media (min-width: 1024px) {
+    .result-card dl {
+        grid-template-columns: 180px 1fr;
+        gap: 1.5rem;
+        padding: 2.5rem;
+    }
+    
+    .result-card dt {
+        font-size: 0.9rem;
+    }
+    
+    .result-card dd {
+        font-size: 1.15rem;
+    }
 }
 
 .error {
@@ -498,6 +606,45 @@ button#submitBtn:disabled {
     background: white;
     border-radius: 4px;
     transition: width 0.3s ease;
+}
+
+/* Responsive Splash Screen */
+@media (min-width: 768px) {
+    #splash-screen .splash-logo {
+        width: 180px;
+        height: 180px;
+    }
+    
+    #splash-screen .splash-title {
+        font-size: 1.75rem;
+    }
+    
+    #splash-screen .splash-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .loader-bar-container {
+        max-width: 350px;
+    }
+}
+
+@media (min-width: 1024px) {
+    #splash-screen .splash-logo {
+        width: 200px;
+        height: 200px;
+    }
+    
+    #splash-screen .splash-title {
+        font-size: 2rem;
+    }
+    
+    #splash-screen .splash-subtitle {
+        font-size: 1.2rem;
+    }
+    
+    .loader-bar-container {
+        max-width: 400px;
+    }
 }
 
 .loader-text {
