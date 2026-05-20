@@ -154,22 +154,42 @@
             <!-- Main Card -->
             <div class="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
                 
-                <!-- Download Links -->
-                <div class="mb-6 p-4 bg-blue-50 rounded-xl">
-                    <p class="text-sm font-semibold text-blue-700 mb-3 text-center">📥 Unduh Aplikasi Safeexam Browser</p>
-                    <div class="flex flex-wrap justify-center gap-3">
-                        <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" 
-                           class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-all text-sm">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.36,10.72L18.12,12.96L14.54,9.39L20.36,10.72M16.81,8.85L14.54,11.12L6.05,2.64L16.81,8.85Z"/></svg>
-                            Android
-                        </a>
-                        <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" 
-                           class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-sm">
-                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,5L11,12L3,19H11V22L21,12V11L11,2V5M13,5L21,12L13,19V22L21,12V5H13Z"/></svg>
-                            Windows
-                        </a>
-                    </div>
-                </div>
+                 <!-- Download Links -->
+                 <div class="mb-6 p-4 bg-blue-50 rounded-xl">
+                     <p class="text-sm font-semibold text-blue-700 mb-3 text-center">📥 Unduh Aplikasi Safeexam Browser</p>
+                     <div class="flex flex-wrap justify-center gap-3">
+                         <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" 
+                            class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-all text-sm">
+                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.36,10.72L18.12,12.96L14.54,9.39L20.36,10.72M16.81,8.85L14.54,11.12L6.05,2.64L16.81,8.85Z"/></svg>
+                             Android
+                         </a>
+                         <a href="https://sites.google.com/view/bsjc-jl2026/pusat-informasi?authuser=0" target="_blank" 
+                            class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-sm">
+                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,5L11,12L3,19H11V22L21,12V11L11,2V5M13,5L21,12L13,19V22L21,12V5H13Z"/></svg>
+                             Windows
+                         </a>
+                     </div>
+                 </div>
+                 
+                 <!-- Start Exam Button -->
+                 <div class="mb-6">
+                     <button id="exam-spoiler-toggle" class="w-full py-3 bg-red-600 hover:bg-red-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
+                         🍎 Mulai Ujian Windows/Mac OS/Iphone🍎
+                     </button>
+                     <div id="exam-spoiler-content" class="hidden mt-4 space-y-3 p-4 bg-red-50 rounded-xl border border-red-200">
+                         <div class="text-red-800 font-semibold mb-2">Petunjuk Penggunaan SafeExam Browser:</div>
+                         <ol class="list-decimal list-inside text-red-700 space-y-2 pl-5">
+                             <li class="leading-relaxed">Pastikan sudah menginstal SafeExamBrowser dari https://safeexambrowser.org/download_en.html</li>
+                             <li class="leading-relaxed">Jika sudah klik tombol Mulai Ujian ini untuk membuka halaman ujian</li>
+                             <li class="leading-relaxed">
+    <a href="sebs://bsjceo2026.netlify.app/01_Mulai_Olympiad_2026.seb" 
+       class="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white font-medium rounded-lg transition-all text-sm block">
+        🍎 Mulai Ujian Sekarang
+    </a>
+</li>
+                         </ol>
+                     </div>
+                 </div>
                 
                 <!-- Search Section -->
                 <div id="search-section">

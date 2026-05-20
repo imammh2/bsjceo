@@ -35,8 +35,8 @@ errorModalClose.addEventListener('click', hideErrorModal);
 errorModalBackdrop.addEventListener('click', hideErrorModal);
 
 /* ============================================
-   Spoiler Toggle
-   ============================================ */
+    Spoiler Toggle
+    ============================================ */
 spoilerToggle.addEventListener('click', function() {
     const isHidden = searchForm.classList.contains('hidden');
     if (isHidden) {
@@ -47,6 +47,23 @@ spoilerToggle.addEventListener('click', function() {
         spoilerArrow.classList.remove('rotate-180');
     }
 });
+
+/* ============================================
+    Exam Spoiler Toggle
+    ============================================ */
+const examSpoilerToggle = document.getElementById('exam-spoiler-toggle');
+const examSpoilerContent = document.getElementById('exam-spoiler-content');
+
+if (examSpoilerToggle && examSpoilerContent) {
+    examSpoilerToggle.addEventListener('click', function() {
+        const isHidden = examSpoilerContent.classList.contains('hidden');
+        if (isHidden) {
+            examSpoilerContent.classList.remove('hidden');
+        } else {
+            examSpoilerContent.classList.add('hidden');
+        }
+    });
+}
 
 /* ============================================
    Load Cities on Page Load
