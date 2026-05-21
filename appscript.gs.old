@@ -1,0 +1,230 @@
+// Konstanta untuk nama sheet
+const SHEET_PENGGUNA = 'data_peserta';
+const SHEET_SEKOLAH = 'data_sekolah';
+const SHEET_LOG = 'log_pencarian'; 
+
+// ======================================================================
+// == FUNGSI LOGGING PENCARIAN (TIDAK BERUBAH) ==
+// ======================================================================
+function logSearchAttempt(username, logInfoArray) {
+  try {
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    const logSheet = ss.getSheetByName(SHEET_LOG);
+    if (!logSheet) return;
+
+    const logData = logInfoArray.join('\n');
+    const dataRange = logSheet.getRange("B:B").getValues();
+    let rowNum = -1;
+    for (let i = 0; i < dataRange.length; i++) {
+      if (dataRange[i][0] == username) {
+        rowNum = i + 1;
+        break;
+      }
+    }
+
+    if (rowNum !== -1) {
+      const counterCell = logSheet.getRange(rowNum, 6); 
+      const currentCount = parseInt(counterCell.getValue()) || 0; 
+      counterCell.setValue(currentCount + 1); 
+  
+      const rowData = logSheet.getRange(rowNum, 7, 1, logSheet.getMaxColumns() - 6).getValues()[0];
+      let colNum = 7; 
+      for (let j = 0; j < rowData.length; j++) {
+        if (rowData[j] === "") {
+          colNum += j;
+          break;
+        }
+        if (j === rowData.length - 1 && rowData[j] !== "") {
+           colNum = 7 + j + 1; 
+        } else if (j === rowData.length - 1) {
+           colNum += j; 
+        }
+      }
+      
+      if (colNum <= logSheet.getMaxColumns()) {
+          logSheet.getRange(rowNum, colNum).setValue(logData).setWrap(true);
+      }
+    }
+  } catch (e) {
+    console.error("Log Error: " + e.toString());
+  }
+}
+
+// ======================================================================
+// == FUNGSI UTAMA (doGet, doPost) ==
+// ======================================================================
+
+function doGet(e) {
+  const action = e.parameter.action;
+  const ss = SpreadsheetApp.getActiveSpreadsheet();
+  
+  // ======================================================
+  // ==  BAGIAN GET CITIES (Sudah Aman)  ==
+  // ======================================================
+  if (action === 'getCities') {
+    const cache = CacheService.getScriptCache();
+    const cachedCities = cache.get('city_list'); 
+
+    if (cachedCities != null) {
+      return ContentService.createTextOutput(cachedCities).setMimeType(ContentService.MimeType.JSON);
+    }
+
+    const sheetSekolah = ss.getSheetByName(SHEET_SEKOLAH);
+    const range = sheetSekolah.getRange("A2:A" + sheetSekolah.getLastRow());
+    const uniqueCities = [...new Set(range.getValues().flat())].filter(city => city !== "");
+    
+    const citiesJSON = JSON.stringify(uniqueCities);
+    cache.put('city_list', citiesJSON, 21600); 
+
+    return ContentService.createTextOutput(citiesJSON).setMimeType(ContentService.MimeType.JSON);
+  }
+  
+  // ======================================================
+  // == BAGIAN GET SCHOOLS (SEKARANG LEBIH CEPAT & AMAN) ==
+  // ======================================================
+  if (action === 'getSchools') {
+    const city = e.parameter.city;
+    // const schools = []; // [LAMA] Tidak dipakai
+
+    // [LAMA] Bagian Temp Sheet ini DIHAPUS karena menyebabkan bentrok
+    /*
+    const tempSheetName = "temp_school_query";
+    let tempSheet = ss.getSheetByName(tempSheetName);
+    if (tempSheet) { tempSheet.clear(); } else { tempSheet = ss.insertSheet(tempSheetName); }
+    const queryString = `=QUERY('${SHEET_SEKOLAH}'!A:B; "SELECT B WHERE A = '${city.replace(/'/g, "''")}' ORDER BY B"; 0)`;
+    const queryCell = tempSheet.getRange("A1");
+    queryCell.setFormula(queryString);
+    SpreadsheetApp.flush();
+    const queryResult = tempSheet.getDataRange().getValues();
+    ss.deleteSheet(tempSheet); 
+    for(let i = 0; i < queryResult.length; i++){
+      if(queryResult[i][0] !== ""){ schools.push(queryResult[i][0]); }
+    }
+    */
+
+    // [BARU] FILTER VIA JAVASCRIPT (RAM)
+    // Ambil semua data sekolah sekali jalan
+    const sheetSekolah = ss.getSheetByName(SHEET_SEKOLAH);
+    // Asumsi: A = Kota, B = Nama Sekolah
+    const dataSekolah = sheetSekolah.getRange("A2:B" + sheetSekolah.getLastRow()).getValues();
+    
+    // Filter array di dalam memori (Cepat & Aman)
+    const schools = dataSekolah
+      .filter(row => row[0].toString().toLowerCase() === city.toLowerCase()) // Cocokkan kota
+      .map(row => row[1]) // Ambil hanya nama sekolahnya
+      .sort(); // Urutkan abjad
+
+    return ContentService.createTextOutput(JSON.stringify(schools)).setMimeType(ContentService.MimeType.JSON);
+  }
+
+  return ContentService.createTextOutput(JSON.stringify({error: 'Invalid action'})).setMimeType(ContentService.MimeType.JSON);
+}
+
+// [LAMA] Fungsi ini sudah tidak diperlukan jika kita pakai filter email exact match
+// function calculateSimilarity(a, b) { ... }
+
+
+// Fungsi untuk menangani permintaan POST (mencari data peserta)
+function doPost(e) {
+  try {
+    const searchData = JSON.parse(e.postData.contents);
+    
+    Logger.log("===== EKSEKUSI BARU (DATA AMAN) =====");
+    Logger.log("Data: " + JSON.stringify(searchData));
+
+    const kunciPencarian = searchData.email ? searchData.email.trim() : (searchData.tanggal_lahir ? searchData.tanggal_lahir.trim() : "");
+    const ss = SpreadsheetApp.getActiveSpreadsheet();
+    
+    // ======================================================
+    // == BAGIAN FILTER RAM (PENGGANTI QUERY SHEET) ==
+    // ======================================================
+    
+    // [LAMA] Bagian pembuatan temp sheet ini PENYEBAB BENTROK DATA
+    /*
+    const tempSheetName = "temp_query_sheet";
+    let tempSheet = ss.getSheetByName(tempSheetName);
+    if (tempSheet) { tempSheet.clear(); } else { tempSheet = ss.insertSheet(tempSheetName); }
+    const queryString = `=QUERY('${SHEET_PENGGUNA}'!A:H; "SELECT * WHERE D = '${kunciPencarian}'"; 1)`;
+    const queryCell = tempSheet.getRange("A1");
+    queryCell.setFormula(queryString);
+    SpreadsheetApp.flush();
+    const queryResult = tempSheet.getDataRange().getValues();
+    ss.deleteSheet(tempSheet);
+    */
+
+    // [BARU] AMBIL DATA LANGSUNG KE MEMORI
+    const sheetPengguna = ss.getSheetByName(SHEET_PENGGUNA);
+    // Ambil semua data (Asumsi Header di baris 1, data mulai baris 2)
+    // A:H (8 kolom)
+    const dataPeserta = sheetPengguna.getDataRange().getValues(); 
+    
+    const ditemukanSiswa = [];
+
+    // Loop data dari baris ke-1 (index 1) karena index 0 adalah Header
+    for (let i = 1; i < dataPeserta.length; i++) {
+      const row = dataPeserta[i];
+      // Kolom D adalah index ke-3 (A=0, B=1, C=2, D=3)
+      const dataDiSheet = String(row[3]).trim(); 
+      
+      // Bandingkan secara Exact Match (Case Insensitive jika perlu)
+      if (dataDiSheet.toLowerCase() === kunciPencarian.toLowerCase()) {
+         ditemukanSiswa.push({
+            username: row[1], // Kolom B
+            nama: row[2],     // Kolom C
+            // email: row[3], // Kolom D
+            asal_sekolah: row[4], // Kolom E
+            kab_kota: row[5],     // Kolom F
+            pass_olymp: row[6],   // Kolom G
+            jenjang: row[7]       // Kolom H
+         });
+      }
+    }
+
+    // ======================================================
+    // == LOGIKA RESPONSE (SAMA SEPERTI SEBELUMNYA) ==
+    // ======================================================
+    let response;
+    if (ditemukanSiswa.length === 1) {
+
+      const targetUsername = ditemukanSiswa[0].username;
+      const logSheet = ss.getSheetByName(SHEET_LOG);
+      const searchLimit = 5; 
+
+      if (logSheet) {
+        // Optimasi Log Check: Ambil kolom Username saja
+        const logUsernames = logSheet.getRange("B2:B" + logSheet.getLastRow()).getValues();
+        // Karena kita ambil dari B2, index 0 adalah baris 2
+        for (let i = 0; i < logUsernames.length; i++) {
+          if (logUsernames[i][0] == targetUsername) {
+            const logRowNum = i + 2; // +2 karena mulai dari baris 2
+            const counterCell = logSheet.getRange(logRowNum, 6); 
+            const currentCount = parseInt(counterCell.getValue()) || 0;
+            
+            if (currentCount >= searchLimit) {
+              response = { status: 'limit_reached', message: `Batas pencarian tercapai (${searchLimit}x).` };
+              return ContentService.createTextOutput(JSON.stringify(response)).setMimeType(ContentService.MimeType.JSON);
+            }
+            break; 
+          }
+        }
+      }
+      
+      response = { status: 'success', data: ditemukanSiswa[0] };
+      if (searchData.logInfo) { 
+        logSearchAttempt(ditemukanSiswa[0].username, searchData.logInfo); 
+      }
+
+    } else if (ditemukanSiswa.length > 1) {
+      response = { status: 'duplicate', message: 'Ditemukan data ganda.' };
+    } else {
+      response = { status: 'notfound', message: 'Email tidak ditemukan.' };
+    }
+    
+    return ContentService.createTextOutput(JSON.stringify(response)).setMimeType(ContentService.MimeType.JSON);
+
+  } catch (error) {
+    Logger.log("ERROR: " + error.message);
+    const errorResponse = { status: 'error', message: 'Error Server: ' + error.message };
+    return ContentService.createTextOutput(JSON.stringify(errorResponse)).setMimeType(ContentService.MimeType.JSON);
+  }
+}

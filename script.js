@@ -11,7 +11,7 @@ const searchForm = document.getElementById('search-form');
 const spoilerArrow = document.getElementById('spoiler-arrow');
 const kabKotaSelect = document.getElementById('kab_kota');
 const sekolahSelect = document.getElementById('asal_sekolah');
-const emailInput = document.getElementById('email');
+const namaPesertaInput = document.getElementById('nama_peserta');
 const submitBtn = document.getElementById('submitBtn');
 const resultContainer = document.getElementById('result-container');
 const announcementSection = document.getElementById('announcement-section');
@@ -125,9 +125,9 @@ kabKotaSelect.addEventListener('change', async function() {
 submitBtn.addEventListener('click', async function(e) {
     e.preventDefault();
 
-    // Validasi email harus diisi
-    if (!emailInput.value.trim()) {
-        showErrorModal('Mohon isi email sesuai email saat pendaftaran terlebih dahulu!<br>Jika lupa silahkan hubungi PJ Lomba English Olympiad.');
+    // Validasi nama peserta harus diisi
+    if (!namaPesertaInput.value.trim()) {
+        showErrorModal('Mohon isi nama peserta terlebih dahulu!');
         return;
     }
 
@@ -149,8 +149,8 @@ submitBtn.addEventListener('click', async function(e) {
     ];
 
     const formData = {
-        nama: "",
-        email: emailInput.value,
+        nama: namaPesertaInput.value.trim().toLowerCase().replace(/[^a-z]/g, ''),
+        email: "",
         password: "",
         asal_sekolah: sekolahSelect.value,
         kab_kota: kabKotaSelect.value,
