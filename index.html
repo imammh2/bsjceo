@@ -1,129 +1,180 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="id">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cek Data Peserta - BIG SMK Jatim Cup - English Olympiad (BSJC EO) 2026</title>
-    
-    <meta name="description" content="Halaman resmi untuk cek dan verifikasi data peserta English Olympiad (BSJC EO) 2026.">
-    <meta name="keywords" content="Olimpiade Bahasa Inggris, SMK Jawa Timur, Cek Data Peserta, English Olympiad (BSJC EO) 2026">
-    <meta name="author" content="MGMP Bahasa Inggris SMK Provinsi Jawa Timur">
-    <link rel="canonical" href="https://bsjc-eo2026.netlify.app/"> 
-    <meta property="og:title" content="Cek Data Peserta - Olympiad BIG SMK Jatim Cup 2026">
-    <meta property="og:description" content="Verifikasi data Anda dan dapatkan username untuk simulasi dan babak penyisihan.">
-    <meta property="og:image" content="https://bima-s3.b-cdn.net/logourl-1744025026665.png"> 
-    <meta property="og:url" content="https://bsjc-eo2026.netlify.app/"> 
-    <meta property="og:type" content="website">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Cek Data Peserta - BIG SMK Jatim Cup - English Olympiad (BSJC EO) 2026
+    </title>
 
-    <link rel="icon" href="https://bima-s3.b-cdn.net/logourl-1744025026665.png" type="image/png">
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+    <meta
+      name="description"
+      content="Halaman resmi untuk cek dan verifikasi data peserta English Olympiad (BSJC EO) 2026."
+    />
+    <meta
+      name="keywords"
+      content="Olimpiade Bahasa Inggris, SMK Jawa Timur, Cek Data Peserta, English Olympiad (BSJC EO) 2026"
+    />
+    <meta name="author" content="MGMP Bahasa Inggris SMK Provinsi Jawa Timur" />
+    <link rel="canonical" href="https://bsjc-eo2026.netlify.app/" />
+    <meta
+      property="og:title"
+      content="Cek Data Peserta - Olympiad BIG SMK Jatim Cup 2026"
+    />
+    <meta
+      property="og:description"
+      content="Verifikasi data Anda dan dapatkan username untuk simulasi dan babak penyisihan."
+    />
+    <meta
+      property="og:image"
+      content="https://bima-s3.b-cdn.net/logourl-1744025026665.png"
+    />
+    <meta property="og:url" content="https://bsjc-eo2026.netlify.app/" />
+    <meta property="og:type" content="website" />
+
+    <link
+      rel="icon"
+      href="https://bima-s3.b-cdn.net/logourl-1744025026665.png"
+      type="image/png"
+    />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: {
-                            sky: '#46A6FF',
-                            blue: '#1473E6',
-                        },
-                        brand: {
-                            gradient: 'linear-gradient(135deg, #46A6FF 0%, #1473E6 100%)',
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                    },
-                    animation: {
-                        pulse: 'pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-                    },
-                    keyframes: {
-                        pulse: {
-                            '0%, 100%': { opacity: '1' },
-                            '50%': { opacity: '.5' },
-                        }
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: {
+                sky: "#46A6FF",
+                blue: "#1473E6",
+              },
+              brand: {
+                gradient: "linear-gradient(135deg, #46A6FF 0%, #1473E6 100%)",
+              },
+            },
+            fontFamily: {
+              sans: ["Inter", "sans-serif"],
+            },
+            animation: {
+              pulse: "pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite",
+            },
+            keyframes: {
+              pulse: {
+                "0%, 100%": { opacity: "1" },
+                "50%": { opacity: ".5" },
+              },
+            },
+          },
+        },
+      };
     </script>
-    
+
     <style>
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #46A6FF 0%, #1473E6 100%);
+      body {
+        font-family: "Inter", sans-serif;
+        background: linear-gradient(135deg, #46a6ff 0%, #1473e6 100%);
+      }
+
+      .glass-card {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+      }
+
+      .brand-gradient {
+        background: linear-gradient(135deg, #46a6ff 0%, #1473e6 100%);
+      }
+
+      .sunset-gradient:hover {
+        background: linear-gradient(135deg, #ffd700 0%, #ffa500 100%);
+      }
+
+      .sunset-gradient {
+        background: linear-gradient(135deg, #ffed4a 0%, #ffb347 100%);
+      }
+
+      .loader-bar {
+        transition: width 0.3s ease;
+      }
+
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
         }
-        
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.3);
+        50% {
+          transform: scale(1.05);
         }
-        
-        .brand-gradient {
-            background: linear-gradient(135deg, #46A6FF 0%, #1473E6 100%);
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        
-        .sunset-gradient:hover {
-            background: linear-gradient(135deg, #FFD700 0%, #FFA500 100%);
+        100% {
+          transform: rotate(360deg);
         }
-        
-        .sunset-gradient {
-            background: linear-gradient(135deg, #FFED4A 0%, #FFB347 100%);
+      }
+
+      .animate-pulse {
+        animation: pulse 2s ease-in-out infinite;
+      }
+
+      .animate-spin {
+        animation: spin 0.8s linear infinite;
+      }
+
+      .rotate-180 {
+        transform: rotate(180deg);
+      }
+
+      /* Hide logo labels on very small screens */
+      @media (max-width: 340px) {
+        .logo-label {
+          display: none !important;
         }
-        
-        .loader-bar {
-            transition: width 0.3s ease;
-        }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.05); }
-        }
-        
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
-        .animate-pulse {
-            animation: pulse 2s ease-in-out infinite;
-        }
-        
-        .animate-spin {
-            animation: spin 0.8s linear infinite;
-        }
-        
-        .rotate-180 {
-            transform: rotate(180deg);
-        }
-        
-        /* Hide logo labels on very small screens */
-        @media (max-width: 340px) {
-            .logo-label {
-                display: none !important;
-            }
-        }
+      }
     </style>
-</head>
-<body class="min-h-screen flex flex-col items-center">
-    
+  </head>
+  <body class="min-h-screen flex flex-col items-center">
     <!-- Splash Screen -->
-    <div id="splash-screen" class="fixed inset-0 brand-gradient z-50 flex flex-col items-center justify-center">
-        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="w-32 h-32 md:w-40 md:h-40 object-contain mb-8 animate-pulse">
-        <h1 class="text-white text-xl md:text-2xl font-bold mb-2 text-center">BIG SMK Jatim Cup Junior Level</h1>
-        <p class="text-white/90 text-base md:text-lg mb-8 text-center">English Olympiad 2026</p>
-        
-        <div class="w-4/5 max-w-xs md:max-w-sm h-2 bg-white/30 rounded-full overflow-hidden mb-4">
-            <div id="loader-bar" class="loader-bar h-full bg-white rounded-full" style="width: 0%"></div>
-        </div>
-        <p id="loader-text" class="text-white/90 text-sm font-medium">Memuat data...</p>
+    <div
+      id="splash-screen"
+      class="fixed inset-0 brand-gradient z-50 flex flex-col items-center justify-center"
+    >
+      <img
+        src="olympiad_mascot.png"
+        alt="Olympiad Mascot"
+        class="w-32 h-32 md:w-40 md:h-40 object-contain mb-8 animate-pulse"
+      />
+      <h1 class="text-white text-xl md:text-2xl font-bold mb-2 text-center">
+        BIG SMK Jatim Cup Junior Level
+      </h1>
+      <p class="text-white/90 text-base md:text-lg mb-8 text-center">
+        English Olympiad 2026
+      </p>
+
+      <div
+        class="w-4/5 max-w-xs md:max-w-sm h-2 bg-white/30 rounded-full overflow-hidden mb-4"
+      >
+        <div
+          id="loader-bar"
+          class="loader-bar h-full bg-white rounded-full"
+          style="width: 0%"
+        ></div>
+      </div>
+      <p id="loader-text" class="text-white/90 text-sm font-medium">
+        Memuat data...
+      </p>
     </div>
 
     <!-- Top Bar -->
@@ -131,174 +182,355 @@
 
     <!-- Main Content -->
     <div class="w-full max-w-4xl px-4 py-8 flex-1 mt-4 flex justify-center">
-        <div class="w-full">
-            
-            <!-- Event Header - Separate from Main Content -->
-            <div class="glass-card rounded-2xl p-6 md:p-8 mb-6 text-center shadow-lg">
-                <div class="flex flex-nowrap justify-center items-start gap-2 mb-4">
-                    <div class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1">
-                        <img src="logo-provinsi-jawa-timur.png" alt="Logo Pemerintah Provinsi Jawa Timur" class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full">
-                        <span class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1">Pemprov Jawa Timur</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1">
-                        <img src="https://bima-s3.b-cdn.net/logourl-1744025026665.png" alt="Logo MGMP BIG SMK Jatim" class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full">
-                        <span class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1">MGMP BIG SMK Jatim</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1">
-                        <img src="logo-um.webp" alt="Logo Universitas Negeri Malang" class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full">
-                        <span class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1">Universitas Negeri Malang</span>
-                    </div>
-                    <div class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1">
-                        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-full">
-                        <span class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1">English Olympiad</span>
-                    </div>
-                </div>
-                
-                <h1 class="text-xl md:text-2xl font-extrabold text-blue-600 mb-1">BIG SMK Jatim Cup Junior Level</h1>
-                <p class="text-base md:text-lg font-semibold text-slate-600">English Olympiad 2026</p>
-                
-                <div class="h-1 brand-gradient rounded-full mt-6 mx-auto w-3/5 max-w-40"></div>
+      <div class="w-full">
+        <!-- Event Header - Separate from Main Content -->
+        <div
+          class="glass-card rounded-2xl p-6 md:p-8 mb-6 text-center shadow-lg"
+        >
+          <div class="flex flex-nowrap justify-center items-start gap-2 mb-4">
+            <div
+              class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1"
+            >
+              <img
+                src="logo-provinsi-jawa-timur.png"
+                alt="Logo Pemerintah Provinsi Jawa Timur"
+                class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full"
+              />
+              <span
+                class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1"
+                >Pemprov Jawa Timur</span
+              >
             </div>
-            
-            <!-- Main Card -->
-            <div class="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
-                
-                 <!-- Download Links -->
-                 <div class="mb-6 p-4 bg-blue-50 rounded-xl">
-                     <p class="font-bold text-blue-700 mb-3 text-center">📥 Unduh Panduan & Aplikasi Olympiad</p>
-                     <div class="flex flex-wrap justify-center gap-3">
-                         <a href="https://drive.google.com/file/d/1zeaXEtPtNrtloUsvehl--v61C_4yIYpr/view?pli=1" target="_blank" 
-                            class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-all text-sm">
-                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.36,10.72L18.12,12.96L14.54,9.39L20.36,10.72M16.81,8.85L14.54,11.12L6.05,2.64L16.81,8.85Z"/></svg>
-                             Android
-                         </a>
-                         <a href="https://drive.google.com/file/d/1qfszh5zXrcX9sItHDrKcvWXdnqaAPmAy/view?pli=1" target="_blank" 
-                            class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-sm">
-                             <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M3,5L11,12L3,19H11V22L21,12V11L11,2V5M13,5L21,12L13,19V22L21,12V5H13Z"/></svg>
-                             Windows/Mac OS/IOS
-                         </a>
-                     </div>
-                 </div>
-                 
-                 <!-- Start Exam Button -->
-                 <div class="mb-6">
-                    <button id="exam-spoiler-toggle" class="w-full py-3 sunset-gradient text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">    🍎 Mulai Ujian Windows/Mac OS/IOS</button>
-                     <div id="exam-spoiler-content" class="hidden mt-4 space-y-3 p-4 bg-red-50 rounded-xl border border-red-200">
-                         <div class="text-red-800 font-semibold mb-2">Petunjuk Penggunaan SafeExamBrowser Windows/Mac OS/IOS:</div>
-                         <ol class="list-decimal list-inside text-red-700 space-y-2 pl-5">
-                             <li class="leading-relaxed">Pastikan sudah menginstal SafeExamBrowser dari panduan diatas.</li>
-                             <li class="leading-relaxed">Jika sudah klik tombol Mulai Ujian ini untuk membuka halaman ujian</li>
-                             <li class="leading-relaxed">
-                                <a href="sebs://bsjceo2026.vercel.app/01_Mulai_Olympiad_2026.seb" class="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 hover:bg-blue-400 text-white font-medium rounded-lg transition-all text-sm">🍎 Mulai Ujian Sekarang</a>
-                            </li>
-                         </ol>
-                     </div>
-                 </div>
-                
-                <!-- Search Section -->
-                <div id="search-section">
-                    <button id="spoiler-toggle" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2">
-                        🔍 Cek Data Peserta
-                        <svg id="spoiler-arrow" class="w-5 h-5 transform transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    
-                    <div id="search-form" class="hidden mt-4 space-y-4">
-                        <hr/>
-                        <p class="text-base md:text-md font-bold text-amber-600 text-center mb-4">📢 <b>Mohon data username & password disimpan baik-baik.</b><br/> Langsung disimpan PDF jika sudah ketemu, karena pencarian kami batasi 3 kali saja.</p>
-                        <hr/>
-                        <div>
-                            <label for="kab_kota" class="block text-sm font-semibold text-slate-700 mb-2">Pilih Kabupaten/Kota</label>
-                            <select id="kab_kota" required
-                                class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
-                                <option value="">Memuat data...</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="asal_sekolah" class="block text-sm font-semibold text-slate-700 mb-2">Pilih Sekolah Asal</label>
-                            <select id="asal_sekolah" required disabled
-                                class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
-                                <option value="">Pilih kabupaten/kota terlebih dahulu</option>
-                            </select>
-                        </div>
-                        
-                        <div>
-                            <label for="nama_peserta" class="block text-sm font-semibold text-slate-700 mb-2">Nama Peserta</label>
-                            <input type="text" id="nama_peserta" placeholder="Masukkan nama peserta (minimal 5 karakter)" required minlength="5"
-                                class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all">
-                        </div>
-
-                        <button type="submit" id="submitBtn" class="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-base shadow-md transition-all hover:shadow-lg active:scale-95 flex items-center justify-center gap-2">
-                            🔍 Cari Data Saya
-                        </button>
-                    </div>
-                </div>
-
-                <!-- Printable Area -->
-                <div id="printable-area" class="hidden">
-
-                    <div id="result-container"></div>
-
-                    <div id="announcement-section">
-                        <div class="bg-amber-50 border border-amber-300 rounded-xl p-4 md:p-6">
-                            <h4 class="text-base md:text-lg font-bold text-amber-700 text-center mb-2">📢 PENGUMUMAN PENTING</h4>
-                            <hr/>
-                        <p class="text-base md:text-md font-bold text-amber-600 text-center mb-4">📢 <b>Mohon data username & password disimpan baik-baik.</b><br/>Digunakan pada saat <br/> Langsung disimpan PDF jika sudah ketemu, karena pencarian kami batasi 3 kali saja.</p>
-                        <hr/>
-                            
-                            <ol class="list-decimal list-inside text-sm text-slate-600 space-y-2 pl-2">
-                                <li class="leading-relaxed">
-                                    <strong>Simpan Username & Password</strong> di atas. Digunakan untuk <em>Simulasi</em> dan <em>Penyisihan</em>.
-                                </li>
-                                <li class="leading-relaxed">
-                                    Wajib instal aplikasi <strong>Safeexambrowser Olympiad</strong> sesuai perangkat sebelum simulasi.
-                                </li>
-                                <li class="leading-relaxed">
-                                    Ikuti instruksi Panitia/Penanggungjawab di grup WA resmi Olympiad jika ada kendala.
-                                </li>
-                            </ol>
-                            
-                            <p class="text-xs text-red-600 text-center mt-4 italic border-t border-amber-200 pt-2">Rahasiakan akun Anda. Jangan berikan kepada orang lain.</p>
-                        </div>
-                    </div>
-                </div>
-
+            <div
+              class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1"
+            >
+              <img
+                src="https://bima-s3.b-cdn.net/logourl-1744025026665.png"
+                alt="Logo MGMP BIG SMK Jatim"
+                class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full"
+              />
+              <span
+                class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1"
+                >MGMP BIG SMK Jatim</span
+              >
             </div>
+            <div
+              class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1"
+            >
+              <img
+                src="logo-um.webp"
+                alt="Logo Universitas Negeri Malang"
+                class="h-8 sm:h-10 md:h-12 lg:h-14 w-auto max-w-full"
+              />
+              <span
+                class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1"
+                >Universitas Negeri Malang</span
+              >
+            </div>
+            <div
+              class="flex flex-col items-center gap-1 flex-shrink-0 w-1/4 px-1"
+            >
+              <img
+                src="olympiad_mascot.png"
+                alt="Olympiad Mascot"
+                class="h-10 sm:h-12 md:h-14 lg:h-16 w-auto max-w-full"
+              />
+              <span
+                class="logo-label block text-[10px] sm:text-xs md:text-sm text-slate-500 font-medium text-center leading-tight mt-1"
+                >English Olympiad</span
+              >
+            </div>
+          </div>
+
+          <h1 class="text-xl md:text-2xl font-extrabold text-blue-600 mb-1">
+            BIG SMK Jatim Cup Junior Level
+          </h1>
+          <p class="text-base md:text-lg font-semibold text-slate-600">
+            English Olympiad 2026
+          </p>
+
+          <div
+            class="h-1 brand-gradient rounded-full mt-6 mx-auto w-3/5 max-w-40"
+          ></div>
         </div>
+
+        <!-- Main Card -->
+        <div class="glass-card rounded-2xl p-6 md:p-8 shadow-lg">
+          <!-- Download Links -->
+          <div class="mb-6 p-4 bg-blue-50 rounded-xl">
+            <p class="font-bold text-blue-700 mb-3 text-center">
+              📥 Unduh Panduan & Aplikasi Olympiad
+            </p>
+            <div class="flex flex-wrap justify-center gap-3">
+              <a
+                href="https://drive.google.com/file/d/1zeaXEtPtNrtloUsvehl--v61C_4yIYpr/view?pli=1"
+                target="_blank"
+                class="flex items-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white font-medium rounded-lg transition-all text-sm"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.36,10.72L18.12,12.96L14.54,9.39L20.36,10.72M16.81,8.85L14.54,11.12L6.05,2.64L16.81,8.85Z"
+                  />
+                </svg>
+                Android
+              </a>
+              <a
+                href="https://drive.google.com/file/d/1qfszh5zXrcX9sItHDrKcvWXdnqaAPmAy/view?pli=1"
+                target="_blank"
+                class="flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-lg transition-all text-sm"
+              >
+                <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <path
+                    d="M3,5L11,12L3,19H11V22L21,12V11L11,2V5M13,5L21,12L13,19V22L21,12V5H13Z"
+                  />
+                </svg>
+                Windows/Mac OS/IOS
+              </a>
+            </div>
+          </div>
+
+          <!-- Start Exam Button -->
+          <div class="mb-6">
+            <button
+              id="exam-spoiler-toggle"
+              class="w-full py-3 sunset-gradient text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2"
+            >
+              🍎 Mulai Ujian Windows/Mac OS/IOS
+            </button>
+            <div
+              id="exam-spoiler-content"
+              class="hidden mt-4 space-y-3 p-4 bg-red-50 rounded-xl border border-red-200"
+            >
+              <div class="text-red-800 font-semibold mb-2">
+                Petunjuk Penggunaan SafeExamBrowser Windows/Mac OS/IOS:
+              </div>
+              <ol class="list-decimal list-inside text-red-700 space-y-2 pl-5">
+                <li class="leading-relaxed">
+                  Pastikan sudah menginstal SafeExamBrowser dari panduan diatas.
+                </li>
+                <li class="leading-relaxed">
+                  Jika sudah klik tombol Mulai Ujian ini untuk membuka halaman
+                  ujian
+                </li>
+                <li class="leading-relaxed">
+                  <a
+                    href="sebs://bsjceo2026.vercel.app/01_Mulai_Olympiad_2026.seb"
+                    class="inline-flex items-center gap-2 px-4 py-2 bg-blue-700 hover:bg-blue-400 text-white font-medium rounded-lg transition-all text-sm"
+                    >🍎 Mulai Ujian Sekarang</a
+                  >
+                </li>
+              </ol>
+            </div>
+          </div>
+
+          <!-- Search Section -->
+          <div id="search-section" class="hidden">
+            <button
+              id="spoiler-toggle"
+              class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-bold rounded-xl transition-all flex items-center justify-center gap-2"
+            >
+              🔍 Cek Data Peserta
+              <svg
+                id="spoiler-arrow"
+                class="w-5 h-5 transform transition-transform"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 9l-7 7-7-7"
+                />
+              </svg>
+            </button>
+
+            <div id="search-form" class="hidden mt-4 space-y-4">
+              <hr />
+              <p
+                class="text-base md:text-md font-bold text-amber-600 text-center mb-4"
+              >
+                📢 <b>Mohon data username & password disimpan baik-baik.</b
+                ><br />
+                Langsung disimpan PDF jika sudah ketemu, karena pencarian kami
+                batasi 3 kali saja.
+              </p>
+              <hr />
+              <div>
+                <label
+                  for="kab_kota"
+                  class="block text-sm font-semibold text-slate-700 mb-2"
+                  >Pilih Kabupaten/Kota</label
+                >
+                <select
+                  id="kab_kota"
+                  required
+                  class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                >
+                  <option value="">Memuat data...</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="asal_sekolah"
+                  class="block text-sm font-semibold text-slate-700 mb-2"
+                  >Pilih Sekolah Asal</label
+                >
+                <select
+                  id="asal_sekolah"
+                  required
+                  disabled
+                  class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                >
+                  <option value="">Pilih kabupaten/kota terlebih dahulu</option>
+                </select>
+              </div>
+
+              <div>
+                <label
+                  for="nama_peserta"
+                  class="block text-sm font-semibold text-slate-700 mb-2"
+                  >Nama Peserta</label
+                >
+                <input
+                  type="text"
+                  id="nama_peserta"
+                  placeholder="Masukkan nama peserta (minimal 5 karakter)"
+                  required
+                  minlength="5"
+                  class="w-full px-4 py-3 border border-slate-200 rounded-xl text-base bg-white focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent transition-all"
+                />
+              </div>
+
+              <button
+                type="submit"
+                id="submitBtn"
+                class="w-full py-3 bg-orange-500 hover:bg-orange-600 text-white font-bold rounded-xl text-base shadow-md transition-all hover:shadow-lg active:scale-95 flex items-center justify-center gap-2"
+              >
+                🔍 Cari Data Saya
+              </button>
+            </div>
+          </div>
+
+          <!-- Printable Area -->
+          <div id="printable-area" class="hidden">
+            <div id="result-container"></div>
+
+            <div id="announcement-section">
+              <div
+                class="bg-amber-50 border border-amber-300 rounded-xl p-4 md:p-6"
+              >
+                <h4
+                  class="text-base md:text-lg font-bold text-amber-700 text-center mb-2"
+                >
+                  📢 PENGUMUMAN PENTING
+                </h4>
+                <hr />
+                <p
+                  class="text-base md:text-md font-bold text-amber-600 text-center mb-4"
+                >
+                  📢 <b>Mohon data username & password disimpan baik-baik.</b
+                  ><br />Digunakan pada saat <br />
+                  Langsung disimpan PDF jika sudah ketemu, karena pencarian kami
+                  batasi 3 kali saja.
+                </p>
+                <hr />
+
+                <ol
+                  class="list-decimal list-inside text-sm text-slate-600 space-y-2 pl-2"
+                >
+                  <li class="leading-relaxed">
+                    <strong>Simpan Username & Password</strong> di atas.
+                    Digunakan untuk <em>Simulasi</em> dan <em>Penyisihan</em>.
+                  </li>
+                  <li class="leading-relaxed">
+                    Wajib instal aplikasi
+                    <strong>Safeexambrowser Olympiad</strong> sesuai perangkat
+                    sebelum simulasi.
+                  </li>
+                  <li class="leading-relaxed">
+                    Ikuti instruksi Panitia/Penanggungjawab di grup WA resmi
+                    Olympiad jika ada kendala.
+                  </li>
+                </ol>
+
+                <p
+                  class="text-xs text-red-600 text-center mt-4 italic border-t border-amber-200 pt-2"
+                >
+                  Rahasiakan akun Anda. Jangan berikan kepada orang lain.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    
+
     <!-- Footer -->
     <footer class="w-full py-8 px-4 text-center text-white/80 text-sm">
-        <b>© 2026 MGMP Bahasa Inggris SMK Provinsi Jawa Timur</b><br>
-        <small>By Olympiad Team & IM</small>
+      <b>© 2026 MGMP Bahasa Inggris SMK Provinsi Jawa Timur</b><br />
+      <small>By Olympiad Team & IM</small>
     </footer>
 
     <!-- Loader Overlay -->
-    <div id="loader" class="fixed inset-0 brand-gradient z-40 flex flex-col items-center justify-center hidden">
-        <img src="olympiad_mascot.png" alt="Olympiad Mascot" class="w-24 h-24 md:w-32 md:h-32 object-contain mb-4 animate-pulse">
-        <div class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"></div>
-        <p class="text-white font-semibold">Sedang mengambil data...</p>
+    <div
+      id="loader"
+      class="fixed inset-0 brand-gradient z-40 flex flex-col items-center justify-center hidden"
+    >
+      <img
+        src="olympiad_mascot.png"
+        alt="Olympiad Mascot"
+        class="w-24 h-24 md:w-32 md:h-32 object-contain mb-4 animate-pulse"
+      />
+      <div
+        class="w-12 h-12 border-4 border-white/30 border-t-white rounded-full animate-spin mb-4"
+      ></div>
+      <p class="text-white font-semibold">Sedang mengambil data...</p>
     </div>
 
     <!-- Error Modal -->
-    <div id="error-modal" class="fixed inset-0 z-50 flex items-center justify-center hidden">
-        <div class="absolute inset-0 bg-black/50" id="error-modal-backdrop"></div>
-        <div class="relative bg-white rounded-2xl p-6 max-w-sm mx-4 shadow-2xl transform animate-pulse">
-            <div class="text-center">
-                <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </div>
-                <h3 class="text-lg font-bold text-slate-800 mb-2">⚠️ Peringatan</h3>
-                            <p id="error-modal-message" class="text-sm text-slate-600 mb-6">Mohon isi nama peserta terlebih dahulu!</p>
-                <button id="error-modal-close" class="w-full py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl transition-all">
-                    OK
-                </button>
-            </div>
+    <div
+      id="error-modal"
+      class="fixed inset-0 z-50 flex items-center justify-center hidden"
+    >
+      <div class="absolute inset-0 bg-black/50" id="error-modal-backdrop"></div>
+      <div
+        class="relative bg-white rounded-2xl p-6 max-w-sm mx-4 shadow-2xl transform animate-pulse"
+      >
+        <div class="text-center">
+          <div
+            class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4"
+          >
+            <svg
+              class="w-8 h-8 text-red-600"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+              />
+            </svg>
+          </div>
+          <h3 class="text-lg font-bold text-slate-800 mb-2">⚠️ Peringatan</h3>
+          <p id="error-modal-message" class="text-sm text-slate-600 mb-6">
+            Mohon isi nama peserta terlebih dahulu!
+          </p>
+          <button
+            id="error-modal-close"
+            class="w-full py-3 bg-red-500 hover:bg-red-600 text-white font-semibold rounded-xl transition-all"
+          >
+            OK
+          </button>
         </div>
+      </div>
     </div>
 
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
